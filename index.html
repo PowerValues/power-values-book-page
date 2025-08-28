@@ -13,35 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Overlay -->
-    <div class="nav-overlay"></div>
-
-    <header class="main-header">
-    <div class="container header-container">
-        <a href="#" class="logo-link">
-            <img src="images/logo.svg" alt="Power Values Logo" class="logo">
-        </a>
-        
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="#">Call</a></li>
-                <li><a href="#" class="nav-button active">Book</a></li>
-                <li><a href="#">Training</a></li>
-                <li><a href="#">Quiz</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        
-        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-        </button>
-    </div>
-    <!-- MOVE OVERLAY HERE -->
-    <div class="nav-overlay"></div>
-</header>
-
+    
     <main>
 
         <section class="hero">
@@ -279,60 +251,7 @@
             });
         });
 
-        // --- MOBILE NAVIGATION SCRIPT ---
-        const navToggle = document.querySelector('.mobile-nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        const navOverlay = document.querySelector('.nav-overlay');
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        const body = document.body;
-
-        function openMenu() {
-            navMenu.classList.add('active');
-            navToggle.classList.add('active');
-            navOverlay.classList.add('active');
-            body.classList.add('no-scroll');
-        }
-        function closeMenu() {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-            navOverlay.classList.remove('active');
-            body.classList.remove('no-scroll');
-        }
-        function toggleMenu() {
-            if (navMenu.classList.contains('active')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        }
-
-        if (navToggle) {
-            navToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleMenu();
-            });
-        }
-        if (navOverlay) {
-            navOverlay.addEventListener('click', closeMenu);
-        }
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (navMenu.classList.contains('active')) {
-                    closeMenu();
-                }
-            });
-        });
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                closeMenu();
-            }
-        });
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
-                closeMenu();
-            }
-        });
+        // --- MOBILE NAVIGATION SCRIPT IS NO LONGER NEEDED ---
     });
     </script>
 </body>

@@ -1,6 +1,6 @@
 /* --- TABLE OF CONTENTS ---
 1.  Brand Guide Implementation & Global Styles
-2.  Header, Logo & Navigation
+2.  (Header, Logo & Navigation Removed)
 3.  Utility & Container
 4.  Hero Section (#1 Value Reveal)
 5.  Book Visual Section
@@ -28,9 +28,7 @@
     --shadow-subtle: 0 8px 30px rgba(94, 37, 58, 0.08);
     --shadow-strong: 0 10px 40px rgba(94, 37, 58, 0.15);
 }
-.nav-menu {
-    z-index: 2100;
-}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -56,79 +54,7 @@ h1 { font-size: clamp(2.2rem, 5vw, 3rem); }
 h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
 h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
 
-/* 2. HEADER, LOGO & NAVIGATION */
-.main-header {
-    padding: 1rem 0;
-    background-color: rgba(255, 251, 253, 0.9);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(94, 37, 58, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-.header-container { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-}
-.logo { height: 40px; width: auto; }
-.nav-menu ul { display: flex; align-items: center; gap: 1.5rem; list-style: none; }
-.nav-menu a {
-    text-decoration: none;
-    color: var(--muted-purple);
-    font-family: var(--font-heading);
-    font-weight: 700;
-    padding: 0.5rem 0;
-    position: relative;
-    transition: color 0.3s ease;
-}
-.nav-menu a:hover { color: var(--primary-color); }
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-.nav-menu a:hover::after { width: 100%; }
-.nav-menu a.active { color: var(--primary-color); }
-.nav-menu a.active::after { width: 100%; }
-.nav-button {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-.nav-button:hover { transform: scale(1.05); color: #fff !important; }
-.nav-button.active { background-color: var(--accent-color); color: var(--primary-color) !important; }
-.nav-button::after { display: none; }
-
-/* Mobile Navigation Elements - Hidden on Desktop */
-.mobile-nav-toggle { 
-    display: none; 
-}
-.nav-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1998;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-.nav-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
+/* 2. HEADER, LOGO & NAVIGATION (REMOVED) */
 
 /* 3. UTILITY & CONTAINER */
 .container { width: 90%; max-width: 1100px; margin: 0 auto; }
@@ -301,115 +227,6 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .author-image-column { max-width: 300px; }
     .tiles { grid-template-columns: 1fr; }
     .testimonial-cards { grid-template-columns: 1fr 1fr; }
-    
-    /* SHOW MOBILE NAVIGATION ELEMENTS */
-    .nav-overlay {
-        display: block;
-    }
-    
-    /* MOBILE HAMBURGER TOGGLE BUTTON */
-    .mobile-nav-toggle { 
-        display: flex; 
-        flex-direction: column; 
-        gap: 4px; 
-        background: transparent; 
-        border: none; 
-        cursor: pointer;
-        z-index: 2000; 
-        position: relative;
-        padding: 8px;
-        width: 40px;
-        height: 40px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-    }
-    
-    .mobile-nav-toggle:hover {
-        background-color: rgba(94, 37, 58, 0.1);
-    }
-    
-    .hamburger-bar { 
-        width: 24px; 
-        height: 3px; 
-        background-color: var(--primary-color); 
-        border-radius: 3px; 
-        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        transform-origin: center;
-    }
-    
-    .mobile-nav-toggle.active .hamburger-bar:nth-child(1) { 
-        transform: rotate(45deg) translate(5px, 5px); 
-        background-color: var(--muted-purple);
-    }
-    .mobile-nav-toggle.active .hamburger-bar:nth-child(2) { 
-        opacity: 0; 
-        transform: scale(0);
-    }
-    .mobile-nav-toggle.active .hamburger-bar:nth-child(3) { 
-        transform: rotate(-45deg) translate(5px, -5px); 
-        background-color: var(--muted-purple);
-    }
-    
-    /* MOBILE NAVIGATION MENU - FIXED POSITIONING */
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        bottom: 0;
-        width: 280px;
-        background-color: var(--background-light);
-        transition: right 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        z-index: 1999;
-        overflow-y: auto;
-        box-shadow: var(--shadow-strong);
-    }
-    
-    .nav-menu.active {
-        right: 0;
-    }
-    
-    .nav-menu ul { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 0;
-        padding: 6rem 2rem 2rem;
-        height: 100%;
-        min-height: 100vh;
-    }
-    
-    .nav-menu li { 
-        width: 100%; 
-        border-bottom: 1px solid rgba(94, 37, 58, 0.1);
-    }
-    
-    .nav-menu li:last-child {
-        border-bottom: none;
-    }
-    
-    .nav-menu a { 
-        display: block; 
-        padding: 1.2rem 0; 
-        font-size: 1.1rem;
-        width: 100%;
-        transition: all 0.3s ease;
-    }
-    
-    .nav-menu a:hover {
-        padding-left: 1rem;
-        background-color: rgba(94, 37, 58, 0.05);
-    }
-    
-    .nav-menu a::after {
-        display: none;
-    }
-    
-    .nav-button {
-        border-radius: 8px;
-        text-align: center;
-        margin-top: 1rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -419,10 +236,6 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .option-box:hover { transform: scale(1); }
     .learn-experience { padding-top: 4rem; }
     .book-visual { margin-top: -60px; }
-    
-    .nav-menu {
-        width: 260px;
-    }
     
     .container {
         width: 95%;
@@ -460,15 +273,6 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
 }
 
 @media (max-width: 480px) {
-    .logo { height: 32px; }
-    .nav-menu {
-        width: 240px;
-    }
-    
-    .nav-menu ul {
-        padding: 5rem 1.5rem 2rem;
-    }
-    
     .testimonial-card {
         width: 280px;
         padding: 1.5rem;
