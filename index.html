@@ -270,6 +270,10 @@
         </div>
     </footer>
 
+    <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+        <a href="#cta" class="button button-small">Get The Book</a>
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- SCRIPT FOR URL PARAMETERS ---
@@ -361,14 +365,9 @@
                 if (elementInView(el, 1.25)) {
                     displayScrollElement(el);
                 } 
-                // Optional: To make elements disappear when scrolling back up
-                // else {
-                //     hideScrollElement(el);
-                // }
             })
         }
         
-        // Initial check on page load
         handleScrollAnimation();
         window.addEventListener("scroll", handleScrollAnimation);
 
@@ -381,6 +380,22 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // --- MOBILE STICKY CTA SCRIPT ---
+        const mobileCta = document.getElementById('mobile-sticky-cta');
+        const heroSection = document.querySelector('.hero');
+
+        if (mobileCta && heroSection) {
+            const toggleCtaOnScroll = () => {
+                // Show CTA when user has scrolled past the hero section
+                if (window.scrollY > heroSection.offsetHeight) {
+                    mobileCta.classList.add('visible');
+                } else {
+                    mobileCta.classList.remove('visible');
+                }
+            };
+            window.addEventListener('scroll', toggleCtaOnScroll);
+        }
     });
     </script>
 </body>
