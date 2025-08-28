@@ -172,8 +172,8 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
     align-items: center;
     list-style: none;
     transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     z-index: 999;
 }
 
@@ -232,8 +232,8 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
         background: transparent;
         flex-direction: row;
         justify-content: flex-end;
-        backdrop-filter: none;
         -webkit-backdrop-filter: none;
+        backdrop-filter: none;
     }
     
     .nav-menu.active {
@@ -643,7 +643,6 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
 }
 
 /* CTA Headline Color Override */
@@ -652,6 +651,5 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     -webkit-background-clip: initial;
     -webkit-text-fill-color: initial;
     background-clip: initial;
-    text-fill-color: initial;
     color: var(--accent-color);
 }
