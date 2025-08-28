@@ -334,7 +334,7 @@ section { padding: 5rem 0; overflow-x: hidden; }
 .hero {
     background: linear-gradient(180deg, #ffffff 0%, var(--background-light) 100%);
     text-align: center;
-    padding: 8rem 0 3rem 0; /* CHANGED */
+    padding: 8rem 0 3rem 0;
     margin-top: 80px; 
 }
 .hero-container-new { max-width: 800px; }
@@ -348,17 +348,20 @@ section { padding: 5rem 0; overflow-x: hidden; }
     margin-bottom: 2rem;
     animation: fadeInUp 0.8s 0.2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
-.hero h2 { animation: fadeInUp 0.8s 0.4s cubic-bezier(0.25, 1, 0.5, 1) both; }
+.hero h2 { 
+    animation: fadeInUp 0.8s 0.4s cubic-bezier(0.25, 1, 0.5, 1) both;
+    margin-bottom: 1.5rem; 
+}
 .hero .hero-body { animation: fadeInUp 0.8s 0.6s cubic-bezier(0.25, 1, 0.5, 1) both; }
 .hero .bridge-cta { animation: fadeInUp 0.8s 0.8s cubic-bezier(0.25, 1, 0.5, 1) both; }
 
 .value-certificate h1 { margin: 0; }
 .value-certificate span { color: var(--muted-purple); display: block; margin-top: 0.5rem; }
-.hero-body { max-width: 650px; margin: 1.5rem auto; }
-.bridge-cta { font-family: var(--font-heading); font-size: 1.2rem; margin-top: 2rem; }
+.hero-body { max-width: 650px; margin: 2rem auto; }
+.bridge-cta { font-family: var(--font-heading); font-size: 1.2rem; margin-top: 2.5rem; }
 
 /* 5. BOOK VISUAL SECTION */
-.book-visual { padding: 0; margin-top: 0; /* CHANGED */ position: relative; z-index: 10; text-align: center; }
+.book-visual { padding: 0; margin-top: 4rem; position: relative; z-index: 10; text-align: center; }
 .book-cover-image {
     max-width: 350px;
     width: 80%;
@@ -488,7 +491,7 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
 
 @media (max-width: 768px) {
     .hero {
-        padding: 6rem 0 1.5rem 0; /* CHANGED */
+        padding: 6rem 0 1.5rem 0;
         margin-top: 70px;
     }
 
@@ -501,7 +504,7 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .options-flex { flex-direction: column; }
     .option-box:hover { transform: scale(1); }
     .learn-experience { padding-top: 4rem; }
-    .book-visual { margin-top: 0; /* CHANGED */ }
+    .book-visual { margin-top: 2rem; }
     
     .container {
         width: 95%;
