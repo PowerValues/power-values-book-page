@@ -4,8 +4,10 @@
 3.  Utility & Container
 4.  Hero Section (#1 Value Reveal)
 5.  Book Visual Section
+5B. Look Inside Section
 6.  Learn & Experience Section (Accordion)
 7.  Author Section
+7B. Interactive Tool Section
 8.  Differentiators Section (Features)
 9.  CTA Options Section
 10. Social Proof Section (Interactive Slider)
@@ -23,7 +25,7 @@
     --primary-color: #5e253a;
     --accent-color: #f9e266;
     --secondary-accent: #1c6264;
-    --background-light: #fffbfd;
+    --background-light: #fff; /* Changed to solid white */
     --muted-purple: #853256;
     --dark-text: #3a3a3a;
     --font-heading: 'Karla', sans-serif;
@@ -342,8 +344,9 @@ section { padding: 5rem 0; overflow-x: hidden; }
     background-color: var(--primary-color); 
     color: #fff; 
 }
-.button-secondary:active {
+.button-secondary:active, .button-secondary.active {
     background-color: var(--muted-purple);
+    color: #fff;
 }
 
 .button-small {
@@ -359,9 +362,9 @@ section { padding: 5rem 0; overflow-x: hidden; }
 
 /* 4. HERO SECTION (#1 VALUE REVEAL) */
 .hero {
-    background: linear-gradient(180deg, #ffffff 0%, var(--background-light) 100%);
+    background: #fff; /* Changed to solid white */
     text-align: center;
-    padding: 8rem 0 0 0;
+    padding: 4rem 0 0 0;
     margin-top: 80px; 
 }
 .hero-container-new { max-width: 800px; }
@@ -372,7 +375,7 @@ section { padding: 5rem 0; overflow-x: hidden; }
     box-shadow: var(--shadow-strong);
     display: inline-block;
     border: 1px solid rgba(94, 37, 58, 0.1);
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     animation: fadeInUp 0.8s 0.2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 .hero h2 { 
@@ -388,13 +391,39 @@ section { padding: 5rem 0; overflow-x: hidden; }
 .bridge-cta { font-family: var(--font-heading); font-size: 1.2rem; margin-top: 2.5rem; }
 
 /* 5. BOOK VISUAL SECTION */
-.book-visual { padding: 0; margin-top: 4rem; position: relative; z-index: 10; text-align: center; }
+.book-visual { 
+    padding: 0; 
+    margin-top: 6rem;
+    position: relative; 
+    z-index: 10; 
+    text-align: center; 
+}
 .book-cover-image {
     max-width: 350px;
     width: 80%;
     filter: drop-shadow(var(--shadow-strong));
     animation: float 6s ease-in-out infinite;
 }
+
+/* 5B. LOOK INSIDE SECTION */
+.look-inside { background-color: #fff; }
+.preview-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+.preview-container img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.3s ease;
+}
+.preview-container img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: var(--shadow-strong);
+}
+
 
 /* 6. LEARN & EXPERIENCE SECTION (ACCORDION) */
 .learn-experience { padding-top: 8rem; }
@@ -418,6 +447,38 @@ section { padding: 5rem 0; overflow-x: hidden; }
 .author-image-column:hover .author-photo { transform: rotate(2deg) scale(1.05); }
 .author-bio-column { flex: 1; }
 .author-bio-column blockquote { font-family: var(--font-heading); font-size: 1.2rem; color: var(--muted-purple); border-left: 3px solid var(--secondary-accent); padding-left: 1.5rem; margin: 1.5rem 0; }
+
+/* 7B. INTERACTIVE TOOL SECTION */
+.interactive-tool { background-color: var(--background-light); }
+.tool-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+.tool-result {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    background-color: #fff;
+    padding: 0 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-subtle);
+    max-width: 700px;
+    margin: 0 auto;
+}
+.tool-result.visible {
+    max-height: 300px;
+    opacity: 1;
+    padding: 2rem;
+}
+.tool-result p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
 
 /* 8. DIFFERENTIATORS SECTION (FEATURES) */
 .differentiators { background-color: var(--background-light); }
@@ -446,6 +507,8 @@ section { padding: 5rem 0; overflow-x: hidden; }
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 .option-box:hover { transform: scale(1.05); border-color: var(--accent-color); }
 .option-tag { display: inline-block; background-color: var(--accent-color); color: var(--primary-color); padding: 0.3rem 0.8rem; border-radius: 50px; font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem; margin-bottom: 1rem; }
@@ -453,8 +516,32 @@ section { padding: 5rem 0; overflow-x: hidden; }
 .option-box ul { list-style: none; text-align: left; margin: 1.5rem 0; }
 .option-box li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; }
 .option-box li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); }
+.option-box .button { margin-top: auto; }
 .option-box .button-secondary { background-color: var(--accent-color); border-color: var(--accent-color); color: var(--primary-color); }
 .option-box .button-secondary:hover { background: transparent; color: var(--accent-color); }
+.bonus-badge {
+    background-color: var(--secondary-accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+.bonus-offer {
+    background-color: rgba(255,255,255,0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    border: 1px solid var(--accent-color);
+}
+
 
 /* 10. SOCIAL PROOF SECTION (INTERACTIVE SLIDER) */
 .social-proof { padding-bottom: 6rem; }
@@ -482,12 +569,20 @@ section { padding: 5rem 0; overflow-x: hidden; }
     margin: 0 15px;
     flex-shrink: 0;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 .testimonial-card:hover {
     transform: scale(1.03);
 }
-.testimonial-card p { font-style: italic; color: var(--muted-purple); margin-bottom: 1rem; }
+.testimonial-card p { font-style: italic; color: var(--muted-purple); margin-bottom: 1rem; flex-grow: 1; }
 .testimonial-card span { font-family: var(--font-heading); font-weight: 700; }
+.testimonial-author {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(94, 37, 58, 0.1);
+}
+
 
 /* 11. FINAL CLOSE SECTION */
 .final-close { text-align: center; }
@@ -514,77 +609,35 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .author-image-column { max-width: 300px; }
     .tiles { grid-template-columns: 1fr; }
     .testimonial-cards { grid-template-columns: 1fr 1fr; }
+    .preview-container { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-    .header-cta {
-        display: none;
-    }
-    
-    .header-actions {
-        gap: 0;
-    }
-
-    .hero {
-        padding: 6rem 0 0 0;
-        margin-top: 70px;
-    }
-
-    .logo-image {
-        transform: translateY(3px);
-    }
-    
+    .header-cta { display: none; }
+    .header-actions { gap: 0; }
+    .hero { padding: 2rem 0 0 0; margin-top: 70px; }
+    .logo-image { transform: translateY(3px); }
     .testimonial-cards { grid-template-columns: 1fr; }
     .testimonial-slider { animation-duration: 60s; }
     .options-flex { flex-direction: column; }
     .option-box:hover { transform: scale(1); }
     .learn-experience { padding-top: 4rem; }
-    .book-visual { margin-top: 2rem; }
-    
-    .container {
-        width: 95%;
-    }
-    
-    section {
-        padding: 3rem 0;
-    }
-    
-    .value-certificate {
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .accordion-header {
-        padding: 1.2rem;
-    }
-    
-    .accordion-content p {
-        padding: 0 1.2rem 1.2rem;
-    }
-    
-    .tile {
-        padding: 2rem 1.5rem;
-    }
-    
-    .testimonial-card {
-        width: 300px;
-        margin: 0 10px;
-    }
+    .book-visual { padding: 0; margin-top: 3rem; }
+    .container { width: 95%; }
+    section { padding: 3rem 0; }
+    .value-certificate { padding: 1.5rem; margin-bottom: 1.5rem; }
+    .accordion-header { padding: 1.2rem; }
+    .accordion-content p { padding: 0 1.2rem 1.2rem; }
+    .tile { padding: 2rem 1.5rem; }
+    .testimonial-card { width: 300px; margin: 0 10px; }
+    .look-inside { padding-bottom: 0; }
 }
 
 @media (max-width: 480px) {
-    .testimonial-card {
-        width: 280px;
-        padding: 1.5rem;
-    }
-    
-    .author-image-column {
-        max-width: 250px;
-    }
-    
-    .book-cover-image {
-        max-width: 280px;
-    }
+    .testimonial-card { width: 280px; padding: 1.5rem; }
+    .author-image-column { max-width: 250px; }
+    .book-cover-image { max-width: 280px; }
+    .tool-options { flex-direction: column; }
 }
 
 /* 15. SOCIAL SHARING BUTTONS */
@@ -593,7 +646,6 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     padding-top: 1.5rem;
     border-top: 1px solid rgba(94, 37, 58, 0.1);
 }
-
 .share-prompt {
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -601,14 +653,12 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     margin-bottom: 0.75rem;
     font-weight: 700;
 }
-
 .share-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
-
 .social-share-btn {
     display: flex;
     justify-content: center;
@@ -621,12 +671,10 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     color: var(--primary-color);
     transition: all 0.3s ease;
 }
-
 .social-share-btn svg {
     width: 20px;
     height: 20px;
 }
-
 .social-share-btn:hover {
     transform: scale(1.1) translateY(-3px);
     color: #fff;
@@ -636,45 +684,30 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
 
 /* 16. GOD MODE ANIMATIONS & EFFECTS */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes gradientWave {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
-/* On-Scroll Reveal Setup */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 .animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* Staggered Animation Delays */
 .tiles .animate-on-scroll:nth-child(2),
 .options-flex .animate-on-scroll:nth-child(2) {
     transition-delay: 0.2s;
 }
-
 .tiles .animate-on-scroll:nth-child(3) {
     transition-delay: 0.4s;
 }
-
-/* Premium Headline Styling */
 .section-header h2,
 .final-close h2 {
     background: linear-gradient(45deg, var(--primary-color) 30%, var(--muted-purple) 70%);
@@ -682,8 +715,6 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-
-/* CTA Headline Color Override */
 .cta-options .section-header h2 {
     background: none;
     -webkit-background-clip: initial;
@@ -710,18 +741,15 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     visibility: hidden;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 .mobile-sticky-cta.visible {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
 }
-
 .mobile-sticky-cta .button {
     width: 100%;
     max-width: 400px;
 }
-
 @media (min-width: 769px) {
     .mobile-sticky-cta {
         display: none;

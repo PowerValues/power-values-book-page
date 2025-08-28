@@ -51,7 +51,7 @@
         <section class="hero">
             <div class="container hero-container-new">
                 <div class="value-certificate" id="hero-cert">
-                    <h1>Your #1 Power Value is… <span id="value1-display">[VALUE]</span></h1>
+                    <h1>Your #1 Power Value is… <span id="value1-display">Growth</span></h1>
 
                     <div class="social-share-container">
                         <p class="share-prompt">Share Your Result:</p>
@@ -87,6 +87,20 @@
         <section class="book-visual">
             <div class="container">
                 <img src="images/book-cover.png" alt="3D cover of the Power Values book" class="book-cover-image">
+            </div>
+        </section>
+        
+        <section class="look-inside">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="pre-headline">TAKE A PEEK</span>
+                    <h2>Look Inside The Book</h2>
+                </div>
+                <div class="preview-container animate-on-scroll">
+                    <img src="https://i.imgur.com/7g292G4.png" alt="Preview of the book's Table of Contents">
+                    <img src="https://i.imgur.com/G20gA5u.png" alt="Preview of a diagram from the book">
+                    <img src="https://i.imgur.com/9a5n7m5.png" alt="Preview of a chapter page from the book">
+                </div>
             </div>
         </section>
 
@@ -155,6 +169,22 @@
             </div>
         </section>
 
+        <section class="interactive-tool">
+            <div class="container animate-on-scroll">
+                <div class="section-header">
+                    <span class="pre-headline">A DEEPER INSIGHT</span>
+                    <h2>Find Your Core Conflict</h2>
+                    <p>Your greatest challenges often arise when your top two values compete. Select a likely #2 value below to uncover your unique path to growth.</p>
+                </div>
+                <div class="tool-options" id="tool-options">
+                    <button class="button button-secondary" data-value="Security">Security</button>
+                    <button class="button button-secondary" data-value="Love">Love</button>
+                    <button class="button button-secondary" data-value="Freedom">Freedom</button>
+                </div>
+                <div class="tool-result" id="tool-result"></div>
+            </div>
+        </section>
+
         <section class="differentiators">
             <div class="container">
                 <div class="section-header animate-on-scroll">
@@ -195,6 +225,7 @@
                 </div>
                 <div class="options-flex">
                     <div class="option-box animate-on-scroll">
+                        <div class="bonus-badge">Limited-Time Bonus!</div>
                         <span class="option-tag">Instant Access</span>
                         <h3>PDF Edition + Workbook</h3>
                         <ul>
@@ -202,9 +233,13 @@
                             <li>✓ Bonus "Values-to-Action" Worksheet</li>
                             <li>✓ Read on any device</li>
                         </ul>
+                        <div class="bonus-offer">
+                            <strong>Includes:</strong> The 3-Day Values Alignment video course (a $49 value) FREE.
+                        </div>
                         <a href="#" class="button">Download Now</a>
                     </div>
                     <div class="option-box animate-on-scroll">
+                        <div class="bonus-badge">Limited-Time Bonus!</div>
                         <span class="option-tag">Most Popular</span>
                         <h3>Amazon Print Edition</h3>
                         <ul>
@@ -212,6 +247,9 @@
                             <li>✓ Perfect for highlighting & notes</li>
                             <li>✓ Delivered to your door</li>
                         </ul>
+                        <div class="bonus-offer">
+                            <strong>Includes:</strong> The 3-Day Values Alignment video course (a $49 value) FREE.
+                        </div>
                         <a href="#" class="button button-secondary">Order on Amazon</a>
                     </div>
                 </div>
@@ -227,27 +265,39 @@
                 <div class="testimonial-slider">
                     <div class="testimonial-card">
                         <p>"I finally have words for what actually matters to me. This felt like coming home to myself."</p>
-                        <span>- Sarah J.</span>
+                        <div class="testimonial-author">
+                            <span>- Sarah J.</span>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <p>"It's the first thing that made me feel like I wasn't broken—just misaligned. So empowering."</p>
-                        <span>- Michael B.</span>
+                        <div class="testimonial-author">
+                            <span>- Michael B.</span>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <p>"This quiz was more insightful than hours of journaling. It gave me a clear starting point."</p>
-                        <span>- Emily R.</span>
+                        <div class="testimonial-author">
+                            <span>- Emily R.</span>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <p>"I finally have words for what actually matters to me. This felt like coming home to myself."</p>
-                        <span>- Sarah J.</span>
+                         <div class="testimonial-author">
+                            <span>- Sarah J.</span>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <p>"It's the first thing that made me feel like I wasn't broken—just misaligned. So empowering."</p>
-                        <span>- Michael B.</span>
+                        <div class="testimonial-author">
+                            <span>- Michael B.</span>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <p>"This quiz was more insightful than hours of journaling. It gave me a clear starting point."</p>
-                        <span>- Emily R.</span>
+                        <div class="testimonial-author">
+                            <span>- Emily R.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -276,11 +326,44 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // --- INTERACTIVE TOOL SCRIPT ---
+        const toolOptions = document.getElementById('tool-options');
+        const toolResult = document.getElementById('tool-result');
+        const value1Display = document.getElementById('value1-display');
+
+        if (toolOptions) {
+            toolOptions.addEventListener('click', function(e) {
+                if (e.target.matches('button')) {
+                    const value1 = value1Display.textContent.trim();
+                    const value2 = e.target.dataset.value;
+                    let insight = '';
+
+                    // Simple logic for demonstration
+                    if (value1 === 'Growth' && value2 === 'Security') {
+                        insight = `Your drive for <strong>Growth</strong> can sometimes feel at odds with your need for <strong>Security</strong>. You might delay big leaps for fear of instability. This book teaches you how to build a secure foundation that *enables* growth, rather than restricts it.`;
+                    } else if (value1 === 'Growth' && value2 === 'Love') {
+                        insight = `The push for personal <strong>Growth</strong> can sometimes make you feel distant from those you <strong>Love</strong> if you're not careful. This book provides strategies for sharing your journey and growing *with* your loved ones.`;
+                    } else if (value1 === 'Growth' && value2 === 'Freedom') {
+                        insight = `With <strong>Growth</strong> and <strong>Freedom</strong> as your top values, you're a force for change! The challenge is to pursue new horizons without sacrificing the discipline needed for true mastery. This book helps you find that balance.`;
+                    } else {
+                        insight = `The dynamic between <strong>${value1}</strong> and <strong>${value2}</strong> is a core part of your decision-making. Understanding how they interact is the first step to mastering them. The full framework in the book is designed to guide you through this process.`;
+                    }
+                    
+                    toolResult.innerHTML = `<p>${insight}</p>`;
+                    toolResult.classList.add('visible');
+                    
+                    // Remove active class from all buttons and add to the clicked one
+                    toolOptions.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+        }
+
         // --- SCRIPT FOR URL PARAMETERS ---
         const params = new URLSearchParams(window.location.search);
         const value1 = params.get('value1');
         if (value1) {
-            document.getElementById('value1-display').textContent = value1;
+            value1Display.textContent = value1;
         }
 
         // --- SCRIPT FOR ACCORDION ---
@@ -295,7 +378,6 @@
                     content.style.maxHeight = null;
                     icon.textContent = '+';
                 } else {
-                    // Optionally close all others
                     accordionItems.forEach(i => {
                         i.classList.remove('active');
                         i.querySelector('.accordion-content').style.maxHeight = null;
@@ -319,7 +401,6 @@
             body.classList.toggle('no-scroll');
         });
 
-        // Close menu when clicking on nav links
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -329,7 +410,6 @@
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
                 menuToggle.classList.remove('active');
@@ -355,11 +435,7 @@
         const displayScrollElement = (element) => {
             element.classList.add("visible");
         };
-
-        const hideScrollElement = (element) => {
-            element.classList.remove("visible");
-        };
-
+        
         const handleScrollAnimation = () => {
             scrollElements.forEach((el) => {
                 if (elementInView(el, 1.25)) {
@@ -387,7 +463,6 @@
 
         if (mobileCta && heroSection) {
             const toggleCtaOnScroll = () => {
-                // Show CTA when user has scrolled past the hero section
                 if (window.scrollY > heroSection.offsetHeight) {
                     mobileCta.classList.add('visible');
                 } else {
