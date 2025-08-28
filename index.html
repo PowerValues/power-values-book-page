@@ -14,6 +14,31 @@
 </head>
 <body>
     
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#" class="logo-link">Power Values</a>
+            </div>
+            <nav class="nav">
+                <div class="menu-toggle" id="menu-toggle">
+                    <span class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">Call</a></li>
+                    <li><a href="#" class="nav-link">Book</a></li>
+                    <li><a href="#" class="nav-link">Training</a></li>
+                    <li><a href="#" class="nav-link">Quiz</a></li>
+                    <li><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
     <main>
 
         <section class="hero">
@@ -251,7 +276,35 @@
             });
         });
 
-        // --- MOBILE NAVIGATION SCRIPT IS NO LONGER NEEDED ---
+        // --- MOBILE NAVIGATION SCRIPT ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const body = document.body;
+        
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            body.classList.toggle('no-scroll');
+        });
+
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('no-scroll');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                body.classList.remove('no-scroll');
+            }
+        });
     });
     </script>
 </body>
