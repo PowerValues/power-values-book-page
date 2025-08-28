@@ -6,7 +6,6 @@
     <title>Power Values Book | By Jonathan M. Keim</title>
     
     <link rel="icon" type="image/png" href="images/favicon.png">
-    
     <link rel="stylesheet" href="style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,28 +17,30 @@
     <div class="nav-overlay"></div>
 
     <header class="main-header">
-        <div class="container header-container">
-            <a href="#" class="logo-link">
-                <img src="images/logo.svg" alt="Power Values Logo" class="logo">
-            </a>
-            
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#">Call</a></li>
-                    <li><a href="#" class="nav-button active">Book</a></li>
-                    <li><a href="#">Training</a></li>
-                    <li><a href="#">Quiz</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-            </button>
-        </div>
-    </header>
+    <div class="container header-container">
+        <a href="#" class="logo-link">
+            <img src="images/logo.svg" alt="Power Values Logo" class="logo">
+        </a>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#">Call</a></li>
+                <li><a href="#" class="nav-button active">Book</a></li>
+                <li><a href="#">Training</a></li>
+                <li><a href="#">Quiz</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+        </button>
+    </div>
+    <!-- MOVE OVERLAY HERE -->
+    <div class="nav-overlay"></div>
+</header>
 
     <main>
 
@@ -245,15 +246,13 @@
     </footer>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // --- SCRIPT FOR URL PARAMETERS ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const params = new URLSearchParams(window.location.search);
-            const value1 = params.get('value1');
-
-            if (value1) {
-                document.getElementById('value1-display').textContent = value1;
-            }
-        });
+        const params = new URLSearchParams(window.location.search);
+        const value1 = params.get('value1');
+        if (value1) {
+            document.getElementById('value1-display').textContent = value1;
+        }
 
         // --- SCRIPT FOR ACCORDION ---
         const accordionItems = document.querySelectorAll('.accordion-item');
@@ -267,80 +266,74 @@
                     content.style.maxHeight = null;
                     icon.textContent = '+';
                 } else {
+                    // Optionally close all others
+                    accordionItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.accordion-content').style.maxHeight = null;
+                        i.querySelector('.accordion-icon').textContent = '+';
+                    });
                     item.classList.add('active');
                     content.style.maxHeight = content.scrollHeight + "px";
                     icon.textContent = '−';
                 }
             });
         });
-        
-        // --- FIXED MOBILE NAVIGATION SCRIPT ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.querySelector('.mobile-nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            const navOverlay = document.querySelector('.nav-overlay');
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            const body = document.body;
 
-            // Function to open the menu
-            function openMenu() {
-                navMenu.classList.add('active');
-                navToggle.classList.add('active');
-                navOverlay.classList.add('active');
-                body.classList.add('no-scroll');
+        // --- MOBILE NAVIGATION SCRIPT ---
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navOverlay = document.querySelector('.nav-overlay');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        const body = document.body;
+
+        function openMenu() {
+            navMenu.classList.add('active');
+            navToggle.classList.add('active');
+            navOverlay.classList.add('active');
+            body.classList.add('no-scroll');
+        }
+        function closeMenu() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            navOverlay.classList.remove('active');
+            body.classList.remove('no-scroll');
+        }
+        function toggleMenu() {
+            if (navMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
             }
+        }
 
-            // Function to close the menu
-            function closeMenu() {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                navOverlay.classList.remove('active');
-                body.classList.remove('no-scroll');
-            }
-
-            // Function to toggle the menu
-            function toggleMenu() {
+        if (navToggle) {
+            navToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
+        if (navOverlay) {
+            navOverlay.addEventListener('click', closeMenu);
+        }
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
                 if (navMenu.classList.contains('active')) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
-            }
-
-            // Event listener for the hamburger button
-            if (navToggle) {
-                navToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    toggleMenu();
-                });
-            }
-
-            // Event listener for the overlay to close menu when clicked
-            if (navOverlay) {
-                navOverlay.addEventListener('click', closeMenu);
-            }
-
-            // Event listeners for each menu link to close the menu on click
-            navLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // Close menu when pressing Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                    closeMenu();
-                }
-            });
-
-            // Close menu if window is resized to desktop size
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
                     closeMenu();
                 }
             });
         });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 992 && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    });
     </script>
-
 </body>
 </html>
