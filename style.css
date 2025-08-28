@@ -40,6 +40,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-size: clamp(16px, 1.1vw, 18px); 
 }
+body.no-scroll {
+    overflow: hidden;
+}
 h1, h2, h3 {
     font-family: var(--font-heading);
     font-weight: 800;
@@ -61,7 +64,6 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
     top: 0;
     z-index: 1000;
 }
-/* --- FIX: Ensures logo and mobile icon are perfectly centered vertically --- */
 .header-container { 
     display: flex; 
     justify-content: space-between; 
@@ -103,6 +105,25 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
 .nav-button.active { background-color: var(--accent-color); color: var(--primary-color) !important; }
 .nav-button::after { display: none; }
 .mobile-nav-toggle { display: none; }
+
+/* Mobile Navigation Overlay */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.nav-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
 
 /* 3. UTILITY & CONTAINER */
 .container { width: 90%; max-width: 1100px; margin: 0 auto; }
@@ -275,40 +296,113 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .tiles { grid-template-columns: 1fr; }
     .testimonial-cards { grid-template-columns: 1fr 1fr; }
     
+    /* FIXED MOBILE NAVIGATION STYLES */
+    .nav-overlay {
+        display: block;
+    }
+    
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -300px; /* --- IMPROVEMENT: Start fully off-screen --- */
+        right: 0;
         bottom: 0;
         width: 300px;
-        background-color: #fff;
-        flex-direction: column;
-        text-align: left;
-        padding: 6rem 2rem 2rem;
+        background-color: var(--background-light);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        z-index: 1999;
+        overflow-y: auto;
         box-shadow: var(--shadow-strong);
-        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
+    
     .nav-menu.active {
-        transform: translateX(-300px); /* --- IMPROVEMENT: Slide into view --- */
+        transform: translateX(0);
     }
-    .nav-menu ul { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    .nav-menu li { width: 100%; }
-    .nav-menu a { display: block; padding: 1rem; font-size: 1.2rem; }
+    
+    .nav-menu ul { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 0;
+        padding: 6rem 2rem 2rem;
+        height: 100%;
+        min-height: 100vh;
+    }
+    
+    .nav-menu li { 
+        width: 100%; 
+        border-bottom: 1px solid rgba(94, 37, 58, 0.1);
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-menu a { 
+        display: block; 
+        padding: 1.2rem 0; 
+        font-size: 1.1rem;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+        padding-left: 1rem;
+        background-color: rgba(94, 37, 58, 0.05);
+    }
+    
+    .nav-menu a::after {
+        display: none;
+    }
+    
+    .nav-button {
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 1rem;
+    }
 
     .mobile-nav-toggle { 
         display: flex; 
         flex-direction: column; 
-        gap: 5px; 
+        gap: 4px; 
         background: transparent; 
         border: none; 
         cursor: pointer;
-        z-index: 1001; 
+        z-index: 2000; 
         position: relative;
+        padding: 8px;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
     }
-    .hamburger-bar { width: 25px; height: 3px; background-color: var(--primary-color); border-radius: 3px; transition: all 0.3s ease; }
-    .mobile-nav-toggle.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .mobile-nav-toggle.active .hamburger-bar:nth-child(2) { opacity: 0; }
-    .mobile-nav-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
+    .mobile-nav-toggle:hover {
+        background-color: rgba(94, 37, 58, 0.1);
+    }
+    
+    .hamburger-bar { 
+        width: 24px; 
+        height: 3px; 
+        background-color: var(--primary-color); 
+        border-radius: 3px; 
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        transform-origin: center;
+    }
+    
+    .mobile-nav-toggle.active .hamburger-bar:nth-child(1) { 
+        transform: rotate(45deg) translate(5px, 5px); 
+        background-color: var(--muted-purple);
+    }
+    .mobile-nav-toggle.active .hamburger-bar:nth-child(2) { 
+        opacity: 0; 
+        transform: scale(0);
+    }
+    .mobile-nav-toggle.active .hamburger-bar:nth-child(3) { 
+        transform: rotate(-45deg) translate(5px, -5px); 
+        background-color: var(--muted-purple);
+    }
 }
 
 @media (max-width: 768px) {
@@ -318,4 +412,75 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .option-box:hover { transform: scale(1); }
     .learn-experience { padding-top: 4rem; }
     .book-visual { margin-top: -60px; }
+    
+    .nav-menu {
+        width: 280px;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .value-certificate {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .accordion-header {
+        padding: 1rem;
+    }
+    
+    .accordion-content p {
+        padding: 0 1rem 1rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        width: 100%;
+    }
+    
+    .nav-menu ul {
+        padding: 5rem 1.5rem 2rem;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    .value-certificate {
+        padding: 1rem;
+    }
+    
+    .tile {
+        padding: 2rem 1.5rem;
+    }
+    
+    .option-box {
+        padding: 1.5rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+        width: 280px;
+        margin: 0 10px;
+    }
+    
+    .button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .button-large {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+    }
 }
