@@ -330,7 +330,7 @@ section { padding: 5rem 0; }
 .bridge-cta { font-family: var(--font-heading); font-size: 1.2rem; margin-top: 2rem; }
 
 /* 5. BOOK VISUAL SECTION */
-.book-visual { padding: 0; margin-top: -80px; position: relative; z-index: 10; text-align: center; }
+.book-visual { padding: 0; margin-top: -20px; position: relative; z-index: 10; text-align: center; }
 .book-cover-image {
     max-width: 350px;
     width: 80%;
@@ -448,13 +448,17 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
         padding: 6rem 0 3rem 0;
         margin-top: 70px;
     }
+
+    .logo-image {
+        transform: translateY(3px); /* REPLACED - Precisely aligns logo with menu icon */
+    }
     
     .testimonial-cards { grid-template-columns: 1fr; }
     .testimonial-slider { animation-duration: 60s; }
     .options-flex { flex-direction: column; }
     .option-box:hover { transform: scale(1); }
     .learn-experience { padding-top: 4rem; }
-    .book-visual { margin-top: -60px; }
+    .book-visual { margin-top: -30px; }
     
     .container {
         width: 95%;
@@ -500,4 +504,51 @@ footer { background-color: var(--primary-color); color: rgba(255,255,255,0.8); t
     .book-cover-image {
         max-width: 280px;
     }
+}
+
+/* 15. SOCIAL SHARING BUTTONS (NEW) */
+.social-share-container {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(94, 37, 58, 0.1);
+}
+
+.share-prompt {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--muted-purple);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-share-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid rgba(94, 37, 58, 0.2);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.social-share-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.social-share-btn:hover {
+    transform: scale(1.1) translateY(-3px);
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
