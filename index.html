@@ -52,7 +52,7 @@
             <div class="container hero-container-new">
                 
                 <div class="value-certificate" id="hero-cert-container">
-                    <img src="images/Green Gold Elegant Luxury Certificate of Appreciation.png" id="certificate-image" alt="Your #1 Power Value is Growth">
+                    <img src="images/Green Gold Elegant Luxury Certificate of Appreciation.png" id="certificate-image" alt="Your #1 Power Value is Loyalty">
                 </div>
 
                 <div class="hero-actions-container">
@@ -85,7 +85,15 @@
 
         <section class="book-visual">
             <div class="container">
-                <img src="images/book-cover.png" alt="3D cover of the Power Values book" class="book-cover-image">
+                <div class="book-visual-container" id="open-flipbook">
+                    <img src="images/book-cover.png" alt="3D cover of the Power Values book" class="book-cover-image">
+                    <div class="book-overlay">
+                        <div class="book-overlay-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                            <span>Click to Preview</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -145,7 +153,7 @@
             <div class="container author-container">
                 <div class="author-image-column animate-on-scroll">
                     <div class="author-image-background"></div>
-                    <img src="images/author-photo.jpg" alt="Jonathan M. Keim, author of Power Values" class="author-photo">
+                    <img src="images/jonathamkeim.png" alt="Jonathan M. Keim, author of Power Values" class="author-photo">
                 </div>
                 <div class="author-bio-column animate-on-scroll">
                     <span class="pre-headline">A PROVEN METHODOLOGY</span>
@@ -179,15 +187,10 @@
         <section class="interactive-tool">
             <div class="container animate-on-scroll">
                 <div class="section-header">
-                    <span class="pre-headline">A DEEPER INSIGHT</span>
-                    <h2>Find Your Core Conflict</h2>
-                    <p>Your greatest challenges often arise when your top two values compete. Select a likely #2 value below to uncover your unique path to growth.</p>
+                    <h2>Your Top 3 Values</h2>
+                    <p>This is the beginning of a greater journey—one that brings clarity to every decision, alignment to every step, and transformation to every area of your life.</p>
                 </div>
-                <div class="tool-options" id="tool-options">
-                    <button class="button button-secondary" data-value="Security">Security</button>
-                    <button class="button button-secondary" data-value="Love">Love</button>
-                    <button class="button button-secondary" data-value="Freedom">Freedom</button>
-                </div>
+                <div class="tool-options" id="tool-options"></div>
                 <div class="tool-result" id="tool-result"></div>
             </div>
         </section>
@@ -379,123 +382,183 @@
         <a href="#cta" class="button button-small">Get The Book</a>
     </div>
 
+    <div class="modal-overlay" id="flipbook-modal">
+        <span class="modal-close" id="close-flipbook">&times;</span>
+        <div class="modal-content">
+            <iframe id="flipbook-iframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- INTERACTIVE TOOL SCRIPT ---
-        const toolOptions = document.getElementById('tool-options');
-        const toolResult = document.getElementById('tool-result');
-        const certificateImage = document.getElementById('certificate-image');
+        /**
+         * ------------------------------------------------------------------------
+         * MASTER SCRIPT FOR DYNAMIC CONTENT & PAGE INTERACTIONS
+         * ------------------------------------------------------------------------
+         */
 
-        if (toolOptions) {
-            toolOptions.addEventListener('click', function(e) {
-                if (e.target.matches('button')) {
-                    const params = new URLSearchParams(window.location.search);
-                    const value1 = params.get('value1') || 'Growth'; // Fallback to 'Growth'
-                    const value2 = e.target.dataset.value;
-                    let insight = '';
+        // --- 1. DEFINE ALL VALUE DEFINITIONS ---
+        const valueDefinitions = {
+            Loyalty: "Loyalty is the steadfast commitment to support, trust, and remain dedicated to the people, principles, or causes you value most. It is the expression of unwavering allegiance and reliability, even in the face of challenges.",
+            Courage: "Courage is the strength to face fear, uncertainty, or difficulty with determination and confidence. It is the inner resolve to take bold action in alignment with your values, even when the path ahead is challenging or unknown.",
+            Resilience: "Resilience is the ability to recover, adapt, and thrive in the face of adversity, challenges, or setbacks. It is the value of enduring with strength and determination, transforming obstacles into opportunities for growth.",
+            Security: "Security is the value of creating a sense of stability, safety, and assurance in your life. It is the foundation that allows you to face challenges with confidence and focus on growth, knowing that your essential needs are protected.",
+            Love: "Love is the profound connection and affection that fosters care, understanding, and compassion between individuals. It is the essence of human relationships, rooted in empathy, trust, and the desire to nurture and support others.",
+            Freedom: "Freedom is the ability to live authentically and make choices aligned with your values and desires. It is the liberation from external constraints and internal limitations, empowering you to shape your life and embrace your fullest potential."
+        };
 
-                    if (value1.toLowerCase() === 'growth' && value2 === 'Security') {
-                        insight = `Your drive for <strong>Growth</strong> can sometimes feel at odds with your need for <strong>Security</strong>. You might delay big leaps for fear of instability. This book teaches you how to build a secure foundation that *enables* growth, rather than restricts it.`;
-                    } else if (value1.toLowerCase() === 'growth' && value2 === 'Love') {
-                        insight = `The push for personal <strong>Growth</strong> can sometimes make you feel distant from those you <strong>Love</strong> if you're not careful. This book provides strategies for sharing your journey and growing *with* your loved ones.`;
-                    } else if (value1.toLowerCase() === 'growth' && value2 === 'Freedom') {
-                        insight = `With <strong>Growth</strong> and <strong>Freedom</strong> as your top values, you're a force for change! The challenge is to pursue new horizons without sacrificing the discipline needed for true mastery. This book helps you find that balance.`;
-                    } else {
-                        insight = `The dynamic between <strong>${value1}</strong> and <strong>${value2}</strong> is a core part of your decision-making. Understanding how they interact is the first step to mastering them. The full framework in the book is designed to guide you through this process.`;
-                    }
-                    
-                    toolResult.innerHTML = `<p>${insight}</p>`;
-                    toolResult.classList.add('visible');
-                    
-                    toolOptions.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-                    e.target.classList.add('active');
-                }
-            });
-        }
-
-        // --- SCRIPT FOR URL PARAMETERS (MODIFIED FOR IMAGE) ---
+        // --- 2. READ URL PARAMETERS & UPDATE PAGE CONTENT ---
         const params = new URLSearchParams(window.location.search);
         const value1 = params.get('value1');
+        const value2 = params.get('value2');
+        const value3 = params.get('value3');
+        
+        const certificateImage = document.getElementById('certificate-image');
         if (value1) {
-            const sanitizedValue = value1.toLowerCase().replace(/[^a-z0-9]/gi, ''); // Sanitize input
+            const sanitizedValue = value1.toLowerCase().replace(/[^a-z0-9]/gi, '');
             certificateImage.src = `images/certificates/${sanitizedValue}.png`;
             certificateImage.alt = `Your #1 Power Value is ${value1}`;
         }
 
-        // --- MOBILE NAVIGATION SCRIPT ---
+        const toolOptions = document.getElementById('tool-options');
+        const toolResult = document.getElementById('tool-result');
+        const topValues = [value1, value2, value3].filter(Boolean);
+
+        if (toolOptions && topValues.length > 0) {
+            toolOptions.innerHTML = ''; 
+            topValues.forEach(value => {
+                const button = document.createElement('button');
+                button.className = 'button button-secondary';
+                button.dataset.value = value;
+                button.textContent = value;
+                toolOptions.appendChild(button);
+            });
+        } else if (toolOptions) {
+            toolOptions.innerHTML = `
+                <button class="button button-secondary" data-value="Loyalty">Loyalty</button>
+                <button class="button button-secondary" data-value="Courage">Courage</button>
+                <button class="button button-secondary" data-value="Resilience">Resilience</button>
+            `;
+        }
+        
+        // --- 3. INITIALIZE INTERACTIVE & DYNAMIC FUNCTIONALITY ---
+        
+        // Interactive Tool (Top 3 Values)
+        if (toolOptions) {
+            toolOptions.addEventListener('click', function(e) {
+                if (e.target.matches('button')) {
+                    const value = e.target.dataset.value;
+                    const definition = valueDefinitions[value];
+
+                    if (e.target.classList.contains('active')) {
+                        toolResult.classList.remove('visible');
+                        e.target.classList.remove('active');
+                    } else if (definition) {
+                        toolResult.innerHTML = `<p><strong>${value}:</strong> ${definition}</p>`;
+                        toolResult.classList.add('visible');
+                        toolOptions.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+                        e.target.classList.add('active');
+                    } else {
+                        toolResult.innerHTML = `<p>Definition for <strong>${value}</strong> is not available.</p>`;
+                        toolResult.classList.add('visible');
+                    }
+                }
+            });
+        }
+
+        // Flipbook Modal
+        const openFlipbookButton = document.getElementById('open-flipbook');
+        const closeFlipbookButton = document.getElementById('close-flipbook');
+        const flipbookModal = document.getElementById('flipbook-modal');
+        const flipbookIframe = document.getElementById('flipbook-iframe');
+        
+        // IMPORTANT: Replace this URL with the one for your 6-page preview flipbook from Heyzine
+        const flipbookUrl = "https://heyzine.com/flip-book/19961ee07d.html#page/1"; 
+
+        if (openFlipbookButton && flipbookModal && flipbookIframe) {
+            openFlipbookButton.addEventListener('click', () => {
+                flipbookIframe.src = flipbookUrl;
+                flipbookModal.style.display = 'flex';
+                document.body.classList.add('no-scroll');
+            });
+
+            const closeModal = () => {
+                flipbookModal.style.display = 'none';
+                flipbookIframe.src = ''; 
+                document.body.classList.remove('no-scroll');
+            };
+
+            closeFlipbookButton.addEventListener('click', closeModal);
+            flipbookModal.addEventListener('click', (e) => {
+                if (e.target === flipbookModal) {
+                    closeModal();
+                }
+            });
+        }
+
+        // --- 4. INITIALIZE GENERAL PAGE INTERACTIONS ---
+        
+        // Mobile Navigation
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
         const body = document.body;
         
-        menuToggle.addEventListener('click', function() {
-            menuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            body.classList.toggle('no-scroll');
-        });
-
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.classList.remove('no-scroll');
+        if(menuToggle && navMenu) {
+            menuToggle.addEventListener('click', function() {
+                // Only toggle if the modal is not open
+                if (flipbookModal.style.display !== 'flex') {
+                    menuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    body.classList.toggle('no-scroll');
+                }
             });
-        });
 
-        document.addEventListener('click', function(event) {
-            if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
-                menuToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                body.classList.remove('no-scroll');
-            }
-        });
-    });
-    </script>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- ON-SCROLL REVEAL SCRIPT ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        body.classList.remove('no-scroll');
+                    }
+                });
+            });
+        }
+
+        // On-scroll Reveal Animations
         const scrollElements = document.querySelectorAll(".animate-on-scroll");
-
         const elementInView = (el, dividend = 1) => {
             const elementTop = el.getBoundingClientRect().top;
-            return (
-                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-            );
+            return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
         };
-
-        const displayScrollElement = (element) => {
-            element.classList.add("visible");
-        };
-        
+        const displayScrollElement = (element) => element.classList.add("visible");
         const handleScrollAnimation = () => {
             scrollElements.forEach((el) => {
                 if (elementInView(el, 1.25)) {
                     displayScrollElement(el);
-                } 
-            })
-        }
-        
+                }
+            });
+        };
         handleScrollAnimation();
         window.addEventListener("scroll", handleScrollAnimation);
 
-        // --- HEADER SCROLL EFFECT SCRIPT ---
+        // Header Scroll Effect
         const header = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        if (header) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
 
-        // --- MOBILE STICKY CTA SCRIPT ---
+        // Mobile Sticky CTA
         const mobileCta = document.getElementById('mobile-sticky-cta');
-        const heroSection = document.querySelector('.hero');
-
-        if (mobileCta && heroSection) {
+        if (mobileCta) {
             const toggleCtaOnScroll = () => {
-                if (window.scrollY > heroSection.offsetHeight) {
+                if (window.scrollY > 1) {
                     mobileCta.classList.add('visible');
                 } else {
                     mobileCta.classList.remove('visible');
