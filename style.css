@@ -420,7 +420,6 @@ section { padding: 5rem 0; overflow-x: hidden; }
 .book-cover-image {
     max-width: 350px;
     width: 80%;
-    /* The drop-shadow filter has been removed from here */
     position: relative;
     z-index: 1;
     border-radius: 4px; 
@@ -515,7 +514,12 @@ section { padding: 5rem 0; overflow-x: hidden; }
 
 /* 8. DIFFERENTIATORS SECTION (FEATURES) */
 .differentiators { background-color: var(--background-light); }
-.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.tiles { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2rem; 
+    margin-top: 3rem; 
+}
 .tile {
     padding: 2.5rem 2rem;
     border-radius: 12px;
@@ -524,7 +528,11 @@ section { padding: 5rem 0; overflow-x: hidden; }
     box-shadow: var(--shadow-subtle);
     text-align: center;
 }
-.tile:hover { transform: translateY(-10px); box-shadow: var(--shadow-strong); border-bottom: 4px solid var(--accent-color); }
+.tile:hover { 
+    transform: translateY(-10px); 
+    box-shadow: var(--shadow-strong); 
+    border-bottom: 4px solid var(--accent-color); 
+}
 .tile-icon {
     width: 50px;
     height: 50px;
@@ -537,8 +545,13 @@ section { padding: 5rem 0; overflow-x: hidden; }
     margin: 0 auto 1.5rem auto;
     transition: transform 0.3s ease;
 }
-.tile:hover .tile-icon { transform: scale(1.1) rotate(-15deg); }
-.tile-icon svg { width: 24px; height: 24px; }
+.tile:hover .tile-icon { 
+    transform: scale(1.1) rotate(-15deg); 
+}
+.tile-icon svg { 
+    width: 24px; 
+    height: 24px; 
+}
 
 /* 9. CTA OPTIONS SECTION */
 .cta-options { 
@@ -617,7 +630,6 @@ section { padding: 5rem 0; overflow-x: hidden; }
 .final-close .button { margin-top: 2.5rem; }
 .guarantee-text { display: block; margin-top: 1rem; font-size: 0.9rem; color: #888; }
 
-/* NEW STYLES FOR FINAL CLOSE BODY TEXT */
 .final-close-body {
     max-width: 750px;
     margin-left: auto;
@@ -625,9 +637,11 @@ section { padding: 5rem 0; overflow-x: hidden; }
     font-size: 1.1rem;
     line-height: 1.7;
 }
-.final-close-grid + .final-close-body {
+.final-close .tiles {
     margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
+
 
 /* 12. FOOTER & SOCIAL ICONS */
 footer { 
@@ -688,7 +702,10 @@ footer {
 @media (max-width: 992px) {
     .author-container { flex-direction: column; text-align: center; gap: 2rem; }
     .author-image-column { max-width: 300px; }
-    .tiles, .feature-grid, .final-close-grid { grid-template-columns: 1fr 1fr; }
+    .tiles,
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -703,13 +720,17 @@ footer {
     .book-visual { padding: 0; margin-top: 3rem; }
     .container { width: 95%; }
     section { padding: 3rem 0; }
-    .tile { padding: 2rem 1.5rem; }
     .testimonial-card { width: 300px; margin: 0 10px; }
     .hero-actions-container { flex-direction: column; gap: 1rem; }
-    .tiles, .feature-grid, .final-close-grid { grid-template-columns: 1fr; }
     .outcomes-list {
         padding: 0 1rem;
     }
+    /* START: ADDED STYLES FOR MOBILE STACKING */
+    .differentiators .tiles,
+    .final-close .tiles {
+        grid-template-columns: 1fr;
+    }
+    /* END: ADDED STYLES FOR MOBILE STACKING */
 }
 
 @media (max-width: 480px) {
@@ -798,13 +819,11 @@ footer {
 }
 .tiles .animate-on-scroll:nth-child(2),
 .options-flex .animate-on-scroll:nth-child(2),
-.feature-grid .animate-on-scroll:nth-child(2),
-.final-close-grid .animate-on-scroll:nth-child(2) {
+.feature-grid .animate-on-scroll:nth-child(2) {
     transition-delay: 0.2s;
 }
 .tiles .animate-on-scroll:nth-child(3),
-.feature-grid .animate-on-scroll:nth-child(3),
-.final-close-grid .animate-on-scroll:nth-child(3) {
+.feature-grid .animate-on-scroll:nth-child(3) {
     transition-delay: 0.4s;
 }
 .feature-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.1s; }
@@ -973,37 +992,6 @@ footer {
     max-width: 500px;
 }
 
-.final-close-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 2.5rem 0;
-}
-.final-close-card {
-    text-align: center;
-}
-.final-close-card h3 {
-    margin-top: 0.5rem;
-}
-
-/* ============================================= */
-/* == MOBILE RESPONSIVENESS FIX FOR GRIDS == */
-/* ============================================= */
-@media (max-width: 992px) {
-  .feature-grid,
-  .tiles,
-  .final-close-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 768px) {
-  .feature-grid,
-  .tiles,
-  .final-close-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* 19. FLIPBOOK MODAL STYLES */
 .modal-overlay {
     position: fixed;
@@ -1052,4 +1040,35 @@ footer {
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     border: 2px solid var(--primary-color);
     z-index: 2001;
+}
+
+/*
+=====================================================================
+== FIX: Mobile Responsiveness for "The Promise" (Learn Experience) Section ==
+=====================================================================
+*/
+@media (max-width: 768px) {
+    .learn-experience .feature-grid {
+        /* This ensures the grid stacks into a single column on mobile screens */
+        grid-template-columns: 1fr;
+        /* Adjust the gap for better vertical spacing */
+        gap: 1rem;
+    }
+
+    .learn-experience .feature-card {
+        /* Reduce padding on smaller screens */
+        padding: 1.5rem;
+        /* Ensure text is aligned to the left for readability */
+        text-align: left;
+    }
+
+    .learn-experience .feature-card-header {
+        /* Allow header items to wrap if needed on very small screens */
+        flex-wrap: wrap;
+    }
+
+    /* Ensure the special CTA card is centered */
+    .learn-experience .feature-card-cta {
+        text-align: center;
+    }
 }
