@@ -11,10 +11,10 @@
 9.  CTA Options Section
 10. Social Proof Section (Interactive Slider)
 11. Final Close Section
-12. Footer
+12. Footer & Social Icons
 13. Animations & Transitions
 14. Responsive Design (Media Queries)
-15. Social Sharing Buttons
+15. Social Sharing Buttons & Icons
 16. GOD MODE ANIMATIONS & EFFECTS
 17. Mobile Sticky CTA
 18. NEW & UPDATED STYLES
@@ -576,7 +576,7 @@ section { padding: 5rem 0; overflow-x: hidden; }
     margin-top: 2.5rem;
 }
 
-/* 12. FOOTER */
+/* 12. FOOTER & SOCIAL ICONS */
 footer { 
     background-color: var(--primary-color); 
     color: rgba(255,255,255,0.8); 
@@ -591,20 +591,9 @@ footer {
 }
 .footer-social {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem; /* Reduced gap slightly for a tighter look */
 }
-.footer-social-link {
-    color: rgba(255,255,255,0.7);
-    transition: all 0.3s ease;
-}
-.footer-social-link:hover {
-    color: var(--accent-color);
-    transform: translateY(-3px);
-}
-.footer-social-link svg {
-    width: 24px;
-    height: 24px;
-}
+
 .footer-copy {
     text-align: center;
     font-size: 0.9rem;
@@ -677,7 +666,7 @@ footer {
     .tool-options { flex-direction: column; }
 }
 
-/* 15. SOCIAL SHARING BUTTONS */
+/* 15. SOCIAL SHARING BUTTONS & ICONS */
 .social-share-container {
     animation: fadeInUp 0.8s 0.3s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
@@ -694,28 +683,43 @@ footer {
     align-items: center;
     gap: 1rem;
 }
-.social-share-btn {
-    display: flex;
+
+/* NEW: UNIFIED SOCIAL ICON STYLES */
+.social-icon-link {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;  /* Touch-friendly clickable area */
+    height: 44px; /* Touch-friendly clickable area */
     border-radius: 50%;
-    background-color: transparent;
-    border: 1px solid rgba(94, 37, 58, 0.2);
-    color: var(--primary-color);
     transition: all 0.3s ease;
 }
-.social-share-btn svg {
-    width: 20px;
-    height: 20px;
+.social-icon-link img {
+    width: 24px;  /* Recommended size for your icons */
+    height: 24px; /* Recommended size for your icons */
+    display: block;
 }
-.social-share-btn:hover {
+
+/* Specific styles for Hero Section icons */
+.social-icon-link.hero-icon {
+    background-color: transparent;
+    border: 1px solid rgba(94, 37, 58, 0.2);
+}
+.social-icon-link.hero-icon:hover {
     transform: scale(1.1) translateY(-3px);
-    color: #fff;
     background-color: var(--primary-color);
-    border-color: var(--primary-color);
 }
+/* This makes the icon inside turn white on hover. Assumes your icon is a single color. */
+.social-icon-link.hero-icon:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* Specific styles for Footer icons */
+.social-icon-link.footer-icon:hover {
+    transform: translateY(-3px);
+    background-color: rgba(255, 255, 255, 0.1); /* Optional hover effect for footer */
+}
+
 
 /* 16. GOD MODE ANIMATIONS & EFFECTS */
 @keyframes fadeInUp {
