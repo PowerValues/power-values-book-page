@@ -403,16 +403,69 @@ section { padding: 5rem 0; overflow-x: hidden; }
     margin-top: 6rem;
     position: relative; 
     z-index: 10; 
-    text-align: center; 
+    text-align: center;
+    perspective: 1000px; 
+}
+.book-visual-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transform-style: preserve-3d; 
+    transition: transform 0.2s ease-out; 
+    animation: float 6s ease-in-out infinite;
+}
+.book-visual-container:hover {
+    animation-play-state: paused;
 }
 .book-cover-image {
     max-width: 350px;
     width: 80%;
-    filter: drop-shadow(var(--shadow-strong));
-    animation: float 6s ease-in-out infinite;
+    /* The drop-shadow filter has been removed from here */
     position: relative;
     z-index: 1;
+    border-radius: 4px; 
 }
+.book-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(94, 37, 58, 0.9) 0%, rgba(94, 37, 58, 0.4) 70%, transparent 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    border-radius: 4px; 
+    pointer-events: none;
+    padding: 2rem;
+}
+.book-visual-container:hover .book-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+.book-overlay-content {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    transform: translateY(20px); 
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 0.1s; 
+}
+.book-visual-container:hover .book-overlay-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+.book-overlay-content svg {
+    display: block;
+    margin: 0 auto 0.5rem;
+}
+
 
 /* 6. LEARN & EXPERIENCE SECTION */
 .learn-experience { padding-top: 8rem; }
@@ -591,7 +644,7 @@ footer {
 }
 .footer-social {
     display: flex;
-    gap: 0.5rem; /* Reduced gap slightly for a tighter look */
+    gap: 0.5rem; 
 }
 
 .footer-copy {
@@ -655,7 +708,7 @@ footer {
     .hero-actions-container { flex-direction: column; gap: 1rem; }
     .tiles, .feature-grid, .final-close-grid { grid-template-columns: 1fr; }
     .outcomes-list {
-        padding: 0 1rem; /* Adds horizontal space on mobile */
+        padding: 0 1rem;
     }
 }
 
@@ -684,21 +737,21 @@ footer {
     gap: 1rem;
 }
 
-/* NEW: UNIFIED SOCIAL ICON STYLES */
+/* UNIFIED SOCIAL ICON STYLES */
 .social-icon-link {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 44px;  /* Touch-friendly clickable area */
-    height: 44px; /* Touch-friendly clickable area */
+    width: 44px;  
+    height: 44px; 
     border-radius: 50%;
     transition: all 0.3s ease;
 }
 .social-icon-link img {
-    width: 24px;  /* Recommended size for your icons */
-    height: 24px; /* Recommended size for your icons */
+    width: 24px;  
+    height: 24px; 
     display: block;
-    transition: filter 0.3s ease; /* Add transition for smooth color change */
+    transition: filter 0.3s ease; 
 }
 
 /* Specific styles for Hero Section icons */
@@ -710,7 +763,6 @@ footer {
     transform: scale(1.1) translateY(-3px);
     background-color: var(--primary-color);
 }
-/* This makes the icon inside turn white on hover. Assumes your icon is a single color. */
 .social-icon-link.hero-icon:hover img {
     filter: brightness(0) invert(1);
 }
@@ -718,12 +770,9 @@ footer {
 /* Specific styles for Footer icons */
 .social-icon-link.footer-icon:hover {
     transform: translateY(-3px);
-    background-color: rgba(255, 255, 255, 0.1); /* Optional hover effect for footer */
+    background-color: rgba(255, 255, 255, 0.1);
 }
-
-/* NEW RULE TO CHANGE FOOTER ICON COLOR TO YELLOW ON HOVER */
 .social-icon-link.footer-icon:hover img {
-    /* This complex filter is the most reliable CSS-only method to change your white icon to the specific accent yellow. */
     filter: brightness(0) saturate(100%) invert(88%) sepia(43%) saturate(662%) hue-rotate(345deg) brightness(102%) contrast(97%);
 }
 
@@ -956,41 +1005,6 @@ footer {
 }
 
 /* 19. FLIPBOOK MODAL STYLES */
-.book-visual-container {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-.book-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2; /* Ensures overlay is on top of the book image */
-    background: rgba(94, 37, 58, 0.7);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 15px; /* Adjust to match book cover */
-    pointer-events: none;
-}
-.book-visual-container:hover .book-overlay {
-    opacity: 1;
-}
-.book-overlay-content {
-    text-align: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-}
-.book-overlay-content svg {
-    display: block;
-    margin: 0 auto 0.5rem;
-}
-
 .modal-overlay {
     position: fixed;
     top: 0;

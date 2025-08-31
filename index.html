@@ -93,8 +93,8 @@
                     <img src="images/book-cover.png" alt="3D cover of the Power Values book" class="book-cover-image">
                     <div class="book-overlay">
                         <div class="book-overlay-content">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                            <span>Click to Preview</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.432 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>Look Inside</span>
                         </div>
                     </div>
                 </div>
@@ -491,6 +491,36 @@
         }
 
         // --- 4. INITIALIZE GENERAL PAGE INTERACTIONS ---
+
+        // NEW: Interactive 3D Tilt Effect for Book Preview
+        const tiltElement = document.getElementById('open-flipbook');
+        if(tiltElement) {
+            const height = tiltElement.clientHeight;
+            const width = tiltElement.clientWidth;
+
+            tiltElement.addEventListener('mousemove', (e) => {
+                const { layerX, layerY } = e;
+                const yRotation = ((layerX - width / 2) / width) * 20; // Max 10deg rotation
+                const xRotation = ((layerY - height / 2) / height) * -20; // Max 10deg rotation, inverted
+                
+                const transformString = `
+                    perspective(500px)
+                    scale(1.05)
+                    rotateX(${xRotation}deg)
+                    rotateY(${yRotation}deg)`;
+                
+                tiltElement.style.transform = transformString;
+            });
+
+            tiltElement.addEventListener('mouseleave', () => {
+                tiltElement.style.transform = `
+                    perspective(500px)
+                    scale(1)
+                    rotateX(0)
+                    rotateY(0)`;
+            });
+        }
+
         
         // Mobile Navigation
         const menuToggle = document.getElementById('menu-toggle');
