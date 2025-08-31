@@ -698,6 +698,7 @@ footer {
     width: 24px;  /* Recommended size for your icons */
     height: 24px; /* Recommended size for your icons */
     display: block;
+    transition: filter 0.3s ease; /* Add transition for smooth color change */
 }
 
 /* Specific styles for Hero Section icons */
@@ -718,6 +719,12 @@ footer {
 .social-icon-link.footer-icon:hover {
     transform: translateY(-3px);
     background-color: rgba(255, 255, 255, 0.1); /* Optional hover effect for footer */
+}
+
+/* NEW RULE TO CHANGE FOOTER ICON COLOR TO YELLOW ON HOVER */
+.social-icon-link.footer-icon:hover img {
+    /* This complex filter is the most reliable CSS-only method to change your white icon to the specific accent yellow. */
+    filter: brightness(0) saturate(100%) invert(88%) sepia(43%) saturate(662%) hue-rotate(345deg) brightness(102%) contrast(97%);
 }
 
 
