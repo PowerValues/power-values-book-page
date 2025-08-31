@@ -71,6 +71,7 @@
                             <a href="#" class="social-icon-link hero-icon" aria-label="Share on Instagram">
                                 <img src="images/icons/instagram-heroarea.svg" alt="Share on Instagram">
                             </a>
+                           
                         </div>
                     </div>
                     <a href="#" class="button button-secondary button-small">Download Certificate</a>
@@ -549,15 +550,20 @@
 
         // Mobile Sticky CTA
         const mobileCta = document.getElementById('mobile-sticky-cta');
-        if (mobileCta) {
+        const footer = document.querySelector('footer');
+        if (mobileCta && footer) {
             const toggleCtaOnScroll = () => {
-                if (window.scrollY > 1) {
+                const footerRect = footer.getBoundingClientRect();
+                
+                // Show button if user has scrolled down AND footer is not yet in view
+                if (window.scrollY > 1 && footerRect.top > window.innerHeight) {
                     mobileCta.classList.add('visible');
                 } else {
                     mobileCta.classList.remove('visible');
                 }
             };
             window.addEventListener('scroll', toggleCtaOnScroll);
+            toggleCtaOnScroll(); // Run on page load
         }
     });
     </script>
