@@ -382,7 +382,7 @@ section {
 /* 4. HERO SECTION (#1 VALUE REVEAL) */
 .hero {
     background: #fff;
-    padding: 3rem 0 0 0; /* CHANGED: Reduced top padding */
+    padding: 6rem 0 0 0; /* Increased top padding for whitespace */
     margin-top: 80px; 
 }
 
@@ -1151,5 +1151,3 @@ footer {
         order: 2; 
     }
 }
-}
-Based on the provided files, what is the title of the book and who is the author?
