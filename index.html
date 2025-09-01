@@ -51,8 +51,22 @@
         <section class="hero">
             <div class="container hero-container-new">
                 
-                <div class="value-certificate" id="hero-cert-container">
-                    <img src="images/loyaltycert.svg" id="certificate-image" alt="Your #1 Power Value is Loyalty">
+                <div class="hero-main-grid">
+                    <div class="hero-column-left">
+                        <div class="value-certificate" id="hero-cert-container">
+                            <img src="images/loyaltycert.svg" id="certificate-image" alt="Your #1 Power Value is Loyalty">
+                        </div>
+                    </div>
+
+                    <div class="hero-column-right">
+                        <h2 id="hero-h2">This is the spark that, when honored, unlocks your fullest potential.</h2>
+                        <p class="hero-body" id="hero-body">
+                            Your full hierarchy of 10 Power Values has been sent to your inbox. Inside, you'll find what each value means for your choices, relationships, and future direction.
+                        </p>
+                        <p class="bridge-cta" id="hero-cta">
+                            Knowing your values is powerful. <strong>Living them daily is transformational.</strong>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="hero-actions-container">
@@ -71,30 +85,35 @@
                             <a href="#" class="social-icon-link hero-icon" aria-label="Share on Instagram">
                                 <img src="images/icons/instagram-heroarea.svg" alt="Share on Instagram">
                             </a>
-                           
                         </div>
                     </div>
                     <a href="#" class="button button-secondary button-small">Download Certificate</a>
                 </div>
 
-                <h2 id="hero-h2">This is the spark that, when honored, unlocks your fullest potential.</h2>
-                <p class="hero-body" id="hero-body">
-                    Your full hierarchy of 10 Power Values has been sent to your inbox. Inside, you'll find what each value means for your choices, relationships, and future direction.
-                </p>
-                <p class="bridge-cta" id="hero-cta">
-                    Knowing your values is powerful. <strong>Living them daily is transformational.</strong>
-                </p>
             </div>
         </section>
 
         <section class="book-visual">
             <div class="container">
-                <div class="book-visual-container" id="open-flipbook">
-                    <img src="images/book-cover.png" alt="3D cover of the Power Values book" class="book-cover-image">
-                    <div class="book-overlay">
-                        <div class="book-overlay-content">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.432 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                            <span>Look Inside</span>
+                <div class="book-promo-grid">
+                    <div class="book-text-column">
+                        <h2>This is the spark that, when honored, unlocks your fullest potential.</h2>
+                        <p class="hero-body">
+                            Your full hierarchy of 10 Power Values has been sent to your inbox. Inside, you'll find what each value means for your choices, relationships, and future direction.
+                        </p>
+                        <p class="bridge-cta">
+                            Knowing your values is powerful. <strong>Living them daily is transformational.</strong>
+                        </p>
+                    </div>
+                    <div class="book-image-column">
+                        <div class="book-visual-container" id="open-flipbook">
+                            <img src="images/book-cover.png" alt="3D cover of the Power Values book" class="book-cover-image">
+                            <div class="book-overlay">
+                                <div class="book-overlay-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.432 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                    <span>Look Inside</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -408,7 +427,7 @@
         const value3 = params.get('value3');
         
         const certificateImage = document.getElementById('certificate-image');
-        if (value1) {
+        if (value1 && certificateImage) {
             const sanitizedValue = value1.toLowerCase().replace(/[^a-z0-9]/gi, '');
             // FIX: Standardized path to lowercase 'images/'
             certificateImage.src = `images/certificates/${sanitizedValue}.png`;
@@ -493,7 +512,7 @@
 
         // --- 4. INITIALIZE GENERAL PAGE INTERACTIONS ---
 
-        // NEW: Interactive 3D Tilt Effect for Book Preview
+        // Interactive 3D Tilt Effect for Book Preview
         const tiltElement = document.getElementById('open-flipbook');
         if(tiltElement) {
             const height = tiltElement.clientHeight;
@@ -521,7 +540,6 @@
                     rotateY(0)`;
             });
         }
-
         
         // Mobile Navigation
         const menuToggle = document.getElementById('menu-toggle');
@@ -531,7 +549,7 @@
         if(menuToggle && navMenu) {
             menuToggle.addEventListener('click', function() {
                 // Only toggle if the modal is not open
-                if (flipbookModal.style.display !== 'flex') {
+                if (flipbookModal && flipbookModal.style.display !== 'flex') {
                     menuToggle.classList.toggle('active');
                     navMenu.classList.toggle('active');
                     body.classList.toggle('no-scroll');

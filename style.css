@@ -19,6 +19,8 @@
 17. Mobile Sticky CTA
 18. NEW & UPDATED STYLES
 19. FLIPBOOK MODAL STYLES
+20. HERO LAYOUT UPDATE
+21. BOOK PROMO SECTION
 --------------------------- */
 
 /* 1. BRAND GUIDE IMPLEMENTATION & GLOBAL STYLES */
@@ -380,11 +382,9 @@ section {
 /* 4. HERO SECTION (#1 VALUE REVEAL) */
 .hero {
     background: #fff;
-    text-align: center;
     padding: 4rem 0 0 0;
     margin-top: 80px; 
 }
-.hero-container-new { max-width: 800px; }
 
 .value-certificate {
     background-color: transparent;
@@ -392,12 +392,10 @@ section {
     padding: 0;
     box-shadow: none;
     border: none;
-    margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s 0.2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 #certificate-image {
     max-width: 100%;
-    width: 700px;
     height: auto;
     border-radius: 12px;
     box-shadow: var(--shadow-strong);
@@ -415,11 +413,10 @@ section {
 
 /* 5. BOOK VISUAL SECTION */
 .book-visual { 
-    padding: 0; 
-    margin-top: 6rem;
+    padding: 4rem 0; 
+    margin-top: 2rem;
     position: relative; 
     z-index: 10; 
-    text-align: center;
     perspective: 1000px; 
 }
 .book-visual-container {
@@ -435,7 +432,7 @@ section {
 }
 .book-cover-image {
     max-width: 350px;
-    width: 80%;
+    width: 100%;
     position: relative;
     z-index: 1;
     border-radius: 4px; 
@@ -733,21 +730,17 @@ footer {
     .options-flex { flex-direction: column; }
     .option-box:hover { transform: scale(1); }
     .learn-experience { padding-top: 4rem; }
-    .book-visual { padding: 0; margin-top: 3rem; }
+    .book-visual { padding: 2rem 0; margin-top: 0; }
     .container { width: 95%; }
     section { padding: 3rem 0; }
     .testimonial-card { width: 300px; margin: 0 10px; }
-    .hero-actions-container { flex-direction: column; gap: 1rem; }
     .outcomes-list {
-        /* THIS VALUE WAS INCREASED TO ADD MORE SPACE ON MOBILE */
         padding: 0 2rem;
     }
-    /* START: ADDED STYLES FOR MOBILE STACKING */
     .differentiators .tiles,
     .final-close .tiles {
         grid-template-columns: 1fr;
     }
-    /* END: ADDED STYLES FOR MOBILE STACKING */
 }
 
 @media (max-width: 480px) {
@@ -767,6 +760,7 @@ footer {
     color: var(--muted-purple);
     margin-bottom: 0.75rem;
     font-weight: 700;
+    text-align: center;
 }
 .share-buttons {
     display: flex;
@@ -904,15 +898,6 @@ footer {
 }
 
 /* 18. NEW & UPDATED STYLES */
-.hero-actions-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1066,26 +1051,101 @@ footer {
 */
 @media (max-width: 768px) {
     .learn-experience .feature-grid {
-        /* This ensures the grid stacks into a single column on mobile screens */
         grid-template-columns: 1fr;
-        /* Adjust the gap for better vertical spacing */
         gap: 1rem;
     }
-
     .learn-experience .feature-card {
-        /* Reduce padding on smaller screens */
         padding: 1.5rem;
-        /* Ensure text is aligned to the left for readability */
         text-align: left;
     }
-
     .learn-experience .feature-card-header {
-        /* Allow header items to wrap if needed on very small screens */
         flex-wrap: wrap;
     }
-
-    /* Ensure the special CTA card is centered */
     .learn-experience .feature-card-cta {
         text-align: center;
+    }
+}
+
+/*
+=====================================================================
+== 20. HERO LAYOUT UPDATE ==
+=====================================================================
+*/
+.hero {
+    padding-bottom: 3rem;
+}
+.hero-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    text-align: left;
+    max-width: 1100px;
+    margin-bottom: 2.5rem; /* Added space below the grid */
+}
+.hero-column-right .hero-body {
+    margin: 1.5rem 0;
+}
+.hero-column-right .bridge-cta {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+.hero-actions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+@media (max-width: 820px) {
+    .hero-main-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .hero-column-left {
+        order: 1;
+    }
+    .hero-column-right {
+        order: 2;
+        text-align: center;
+    }
+    .hero-body {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/*
+=====================================================================
+== 21. BOOK PROMO SECTION ==
+=====================================================================
+*/
+.book-promo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+.book-text-column {
+    text-align: left;
+}
+.book-image-column {
+    text-align: center; 
+}
+.book-text-column .hero-body {
+    margin: 1.5rem 0;
+}
+
+@media (max-width: 820px) {
+    .book-promo-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .book-text-column {
+        order: 1; 
+        text-align: center;
+    }
+    .book-image-column {
+        order: 2; 
     }
 }
