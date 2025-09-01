@@ -932,6 +932,21 @@ footer {
     margin-bottom: 0;
     font-size: 1.3rem;
 }
+.feature-card-icon {
+    width: 44px;
+    height: 44px;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.feature-card-icon svg {
+    width: 22px;
+    height: 22px;
+}
 .feature-card-chapter {
     background-color: var(--accent-color);
     color: var(--primary-color);
@@ -941,20 +956,6 @@ footer {
     font-size: 0.8rem;
     font-weight: 800;
     white-space: nowrap; 
-}
-.feature-card-cta {
-    background: linear-gradient(135deg, var(--primary-color), var(--muted-purple));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.feature-card-cta h3, .feature-card-cta p {
-    color: #fff;
-}
-.feature-card-cta .button {
-    margin-top: 1rem;
 }
 
 .experience-outcomes {
@@ -1067,9 +1068,6 @@ footer {
     .learn-experience .feature-card-header {
         flex-wrap: wrap;
     }
-    .learn-experience .feature-card-cta {
-        text-align: center;
-    }
 }
 
 /*
@@ -1084,7 +1082,7 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: start;
+    align-items: center;
     text-align: left;
     max-width: 1100px;
     margin-bottom: 2.5rem; /* Added space below the grid */
@@ -1099,14 +1097,16 @@ footer {
 .hero-actions-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 @media (max-width: 820px) {
     .hero-main-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+        align-items: start;
     }
     .hero-column-left {
         order: 1;
@@ -1114,6 +1114,9 @@ footer {
     .hero-column-right {
         order: 2;
         text-align: center;
+    }
+    .hero-actions-container {
+        align-items: center;
     }
     .hero-body {
         margin-left: auto;
@@ -1140,6 +1143,9 @@ footer {
 }
 .book-text-column .hero-body {
     margin: 1.5rem 0;
+}
+.book-text-column .bridge-cta {
+    margin-top: 0;
 }
 
 @media (max-width: 820px) {
