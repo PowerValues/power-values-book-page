@@ -69,7 +69,7 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
     left: 0;
     right: 0;
     z-index: 1000;
-    transition: background-color: 0.4s ease, box-shadow 0.4s ease;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .header.scrolled {
@@ -127,6 +127,11 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
     z-index: 1001;
     position: relative;
     padding: 0.5rem;
+}
+/* FIX: Added reset styles for the menu-toggle button */
+button.menu-toggle {
+    background: none;
+    border: none;
 }
 
 .menu-icon {
