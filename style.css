@@ -307,7 +307,7 @@ section {
 } 
 .section-header { text-align: center; max-width: 700px; margin: 0 auto 3rem auto; }
 .pre-headline {
-    display: block;
+    display: none;
     font-family: var(--font-heading);
     font-weight: 700;
     color: var(--muted-purple);
@@ -742,6 +742,10 @@ footer {
     .differentiators .tiles,
     .final-close .tiles {
         grid-template-columns: 1fr;
+    }
+    /* HIDE THE CHECKMARK ON MOBILE */
+    .outcomes-list li::before {
+        display: none;
     }
 }
 

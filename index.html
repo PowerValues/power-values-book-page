@@ -459,6 +459,23 @@
         
         // Interactive Tool (Top 3 Values)
         if (toolOptions) {
+            // NEW: Function to set the default state
+            const setDefaultValueDisplay = () => {
+                const firstButton = toolOptions.querySelector('button');
+                if (firstButton) {
+                    const value = firstButton.dataset.value;
+                    const definition = valueDefinitions[value];
+                    if (definition) {
+                        toolResult.innerHTML = `<p><strong>${value}:</strong> ${definition}</p>`;
+                        toolResult.classList.add('visible');
+                        firstButton.classList.add('active');
+                    }
+                }
+            };
+
+            // Set the default display when the page loads
+            setDefaultValueDisplay();
+            
             toolOptions.addEventListener('click', function(e) {
                 if (e.target.matches('button')) {
                     const value = e.target.dataset.value;
