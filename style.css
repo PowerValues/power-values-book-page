@@ -935,8 +935,8 @@ footer {
 .feature-card-icon {
     width: 44px;
     height: 44px;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color); /* MODIFIED: Changed from --accent-color */
+    color: #fff; /* MODIFIED: Changed from --primary-color */
     border-radius: 50%;
     display: flex;
     justify-content: center;
