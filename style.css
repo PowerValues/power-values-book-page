@@ -704,6 +704,23 @@ footer {
     text-decoration: underline;
 }
 
+.footer-legal .separator {
+    display: inline-block;
+    color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 768px) {
+    .footer-legal {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footer-legal .separator {
+        display: none;
+    }
+}
+
+
 /* 13. ANIMATIONS & TRANSITIONS */
 @keyframes float {
     0% { transform: translateY(0px); }
@@ -1183,5 +1200,22 @@ footer {
     }
     .book-image-column {
         order: 2; 
+    }
+}
+
+/*
+=====================================================================
+== FOOTER MOBILE STYLING FIX ==
+=====================================================================
+*/
+
+@media (max-width: 768px) {
+    .footer-legal {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer-legal .separator {
+        display: none;
     }
 }
