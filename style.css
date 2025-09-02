@@ -302,7 +302,7 @@ button.menu-toggle {
 /* 3. UTILITY & CONTAINER */
 .container { width: 90%; max-width: 1100px; margin: 0 auto; }
 section { 
-    padding: 3.5rem 0; /* CHANGED: Reduced global vertical padding */
+    padding: 3.5rem 0;
     overflow-x: clip;
 } 
 .section-header { text-align: center; max-width: 700px; margin: 0 auto 3rem auto; }
@@ -382,7 +382,7 @@ section {
 /* 4. HERO SECTION (#1 VALUE REVEAL) */
 .hero {
     background: #fff;
-    padding: 6rem 0 0 0; /* Increased top padding for whitespace */
+    padding: 6rem 0 0 0;
     margin-top: 80px; 
 }
 
@@ -405,6 +405,13 @@ section {
     animation: fadeInUp 0.8s 0.4s cubic-bezier(0.25, 1, 0.5, 1) both;
     margin-bottom: 1.5rem; 
 }
+#hero-h2 {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--dark-text);
+    line-height: 1.6;
+}
 .hero .hero-body { animation: fadeInUp 0.8s 0.6s cubic-bezier(0.25, 1, 0.5, 1) both; }
 .hero .bridge-cta { animation: fadeInUp 0.8s 0.8s cubic-bezier(0.25, 1, 0.5, 1) both; }
 
@@ -413,8 +420,8 @@ section {
 
 /* 5. BOOK VISUAL SECTION */
 .book-visual { 
-    padding: 3.5rem 0; /* CHANGED: padding is now inherited from section rule */
-    margin-top: 0; /* CHANGED: Removed extra top margin */
+    padding: 3.5rem 0;
+    margin-top: 0;
     position: relative; 
     z-index: 10; 
     perspective: 1000px; 
@@ -481,7 +488,7 @@ section {
 
 /* 6. LEARN & EXPERIENCE SECTION */
 .learn-experience { 
-    /* CHANGED: Removed padding-top: 8rem; rule to use global section padding */
+    /* No custom styles needed */
 }
 
 /* 7. AUTHOR SECTION */
@@ -935,8 +942,8 @@ footer {
 .feature-card-icon {
     width: 44px;
     height: 44px;
-    background-color: var(--primary-color); /* MODIFIED: Changed from --accent-color */
-    color: #fff; /* MODIFIED: Changed from --primary-color */
+    background-color: var(--primary-color);
+    color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -1082,10 +1089,10 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: center;
+    align-items: start;
     text-align: left;
     max-width: 1100px;
-    margin-bottom: 2.5rem; /* Added space below the grid */
+    margin-bottom: 2.5rem;
 }
 .hero-column-right .hero-body {
     margin: 1.5rem 0;
@@ -1097,10 +1104,27 @@ footer {
 .hero-actions-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
+.share-label {
+    margin-bottom: -0.75rem;
+    font-size: 0.9rem;
+    color: var(--dark-text);
+}
+
+.actions-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero-download-action {
+    margin-top: 2rem;
+}
+
 
 @media (max-width: 820px) {
     .hero-main-grid {
