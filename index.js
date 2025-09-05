@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const shareFacebookBtn = document.getElementById('share-facebook');
     const shareLinkedinBtn = document.getElementById('share-linkedin');
 
-    const pageUrl = encodeURIComponent(window.location.href);
+    const pageUrl = encodeURIComponent(`https://share.powervalues.xyz/?id=${id}`);
     const dynamicValue = value1 || 'my Power Value';
     const shareText = encodeURIComponent(`I discovered my #1 Power Value is ${dynamicValue}! Find out yours and unlock your potential. #PowerValues`);
     const shareTitle = encodeURIComponent(`My #1 Power Value is ${dynamicValue}`);
