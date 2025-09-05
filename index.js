@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (downloadButton) {
         downloadButton.addEventListener('click', () => {
             // const imageUrlToDownload = certificateImage.src; // Replace with your image URL
-            const imageUrlToDownload = 'https://www.jmkeim.com/power'; // Replace with your image URL
+            const imageUrlToDownload = certificateImage.src; // Replace with your image URL
             downloadImage(imageUrlToDownload, `${value1}.jpg`); // Optional: provide a custom filename
         });
     }
