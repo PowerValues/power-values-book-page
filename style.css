@@ -1165,6 +1165,7 @@ footer {
 
 .hero-download-action {
     margin-top: 2rem;
+    cursor: pointer;
 }
 
 
