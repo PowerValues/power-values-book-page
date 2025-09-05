@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
 
+
 async function fetchValueDefinitions() {
     try {
         const response = await fetch('https://backend-production-db30.up.railway.app/quiz/settings');
@@ -15,8 +16,12 @@ function getDefinition(definitions, value) {
     return definitions.find(d => d.word === value).definition;
 }
 
+let isDownloading = false;
 async function downloadImage(imageUrl, filename = 'certificate.png') {
     try {
+        if (isDownloading) return;
+        isDownloading = true;
+
         const proxyUrl = `https://share.powervalues.xyz/download?url=${encodeURIComponent(imageUrl)}`;
         const response = await fetch(proxyUrl);
 
@@ -37,6 +42,8 @@ async function downloadImage(imageUrl, filename = 'certificate.png') {
         URL.revokeObjectURL(url);
     } catch (e) {
         console.log(e);
+    } finally {
+        isDownloading = false; // ✅ unlock
     }
 }
 
@@ -48,7 +55,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const topValues = data.user.topValues.slice(0, 3);
 
     const definitions = await fetchValueDefinitions();
-
 
 
     /**
