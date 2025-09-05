@@ -786,6 +786,16 @@ footer {
     .outcomes-list li::before {
         display: none;
     }
+    
+    /* Mobile-specific adjustments to reduce negative space */
+    .section-header { margin-bottom: 2rem; }
+    section { padding: 2rem 0; }
+    .author-container { gap: 1rem; }
+    .testimonial-slider-container { padding: 1rem 0; }
+    .social-proof { padding-bottom: 4rem; }
+    footer { margin-top: 2rem; padding: 2rem 0; }
+    .final-close .button { margin-top: 1.5rem; }
+    .final-close .tiles { margin-top: 1.5rem; margin-bottom: 1.5rem; }
 }
 
 @media (max-width: 480px) {
@@ -1217,13 +1227,9 @@ footer {
     .book-image-column {
         order: 2; 
     }
-
-    /* Hide the desktop image on mobile */
     .book-pointer-image {
         display: none;
     }
-
-    /* Show the mobile image on mobile, and center it */
     .book-pointer-image-mobile {
         display: block;
         max-width: 200px;
