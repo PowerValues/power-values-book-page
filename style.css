@@ -484,6 +484,21 @@ section {
     display: block;
     margin: 0 auto 0.5rem;
 }
+/* Hide the mobile image by default */
+.book-pointer-image-mobile {
+    display: none;
+}
+
+/* Styles for the desktop image */
+.book-pointer-image {
+    max-width: 250px;
+    width: 100%;
+    position: absolute;
+    top: -50px;
+    right: -140px;
+    transform: rotate(10deg);
+    z-index: 1;
+}
 
 
 /* 6. LEARN & EXPERIENCE SECTION */
@@ -1181,6 +1196,7 @@ footer {
 }
 .book-image-column {
     text-align: center; 
+    position: relative;
 }
 .book-text-column .hero-body {
     margin: 1.5rem 0;
@@ -1200,6 +1216,18 @@ footer {
     }
     .book-image-column {
         order: 2; 
+    }
+
+    /* Hide the desktop image on mobile */
+    .book-pointer-image {
+        display: none;
+    }
+
+    /* Show the mobile image on mobile, and center it */
+    .book-pointer-image-mobile {
+        display: block;
+        max-width: 200px;
+        margin: 1rem auto 0;
     }
 }
 
