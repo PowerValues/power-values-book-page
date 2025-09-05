@@ -4,7 +4,7 @@ const id = params.get('id');
 
 async function fetchValueDefinitions() {
     try {
-        const response = await fetch('https://backend-production-db30.up.railway.app/quiz/settings');
+        const response = await fetch('https://backend-production-9294.up.railway.app/quiz/settings');
         const data = await response.json();
         return data.values;
     } catch (e) {
@@ -50,7 +50,7 @@ async function downloadImage(imageUrl, filename = 'certificate.png') {
 
 document.addEventListener('DOMContentLoaded', async function () {
 
-    const response = await fetch(`https://backend-production-db30.up.railway.app/quiz/${id}`);
+    const response = await fetch(`https://backend-production-9294.up.railway.app/quiz/${id}`);
     const data = await response.json();
     const topValues = data.user.topValues.slice(0, 3);
 
