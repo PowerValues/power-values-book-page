@@ -17,7 +17,7 @@ function getDefinition(definitions, value) {
 
 async function downloadImage(imageUrl, filename = 'certificate.png') {
     try {
-        const proxyUrl = `/download?url=${encodeURIComponent(imageUrl)}`;
+        const proxyUrl = `https://share.powervalues.xyz/download?url=${encodeURIComponent(imageUrl)}`;
         const response = await fetch(proxyUrl);
 
         if (!response.ok) {
