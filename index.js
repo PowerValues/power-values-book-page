@@ -17,21 +17,26 @@ function getDefinition(definitions, value) {
 
 async function downloadImage(imageUrl, filename = 'certificate.png') {
     try {
-        const response = await fetch(imageUrl, { mode: 'cors' });
+        const proxyUrl = `/download?url=${encodeURIComponent(imageUrl)}`;
+        const response = await fetch(proxyUrl);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch image');
+        }
+
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement('a');
         link.href = url;
-        link.download = filename;
+        link.download = filename;  // 👈 Forces "Save As" dialog
         document.body.appendChild(link);
         link.click();
 
-        // Clean up
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-    } catch (error) {
-        console.error('Download failed:', error);
+    } catch (e) {
+        console.log(e);
     }
 }
 
@@ -86,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         downloadButton.addEventListener('click', () => {
             // const imageUrlToDownload = certificateImage.src; // Replace with your image URL
             const imageUrlToDownload = certificateImage.src; // Replace with your image URL
-            downloadImage(imageUrlToDownload, `${value1}.jpg`); // Optional: provide a custom filename
+            downloadImage(imageUrlToDownload, `${value1}.png`); // Optional: provide a custom filename
         });
     }
 
