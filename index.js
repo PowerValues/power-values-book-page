@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const definitions = await fetchValueDefinitions();
 
-
     /**
      * ------------------------------------------------------------------------
      * MASTER SCRIPT FOR DYNAMIC CONTENT & PAGE INTERACTIONS
@@ -79,10 +78,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     // const value2 = params.get('value2');
     // const value3 = params.get('value3');
 
+    //Remove all loading indicators
+    const loadingIndicators = document.querySelectorAll('.loader');
+    loadingIndicators.forEach(element => {
+        element.style.display = 'none';
+    });
+
     const certificateImage = document.getElementById('certificate-image');
+    //Show certificate image once loaded
+    certificateImage.style.display = 'block';
+
+
     if (value1 && certificateImage) {
         const sanitizedValue = value1.toLowerCase().replace(/[^a-z0-9]/gi, '');
-        // certificateImage.src = `images/certificates/${sanitizedValue}.png`;
         certificateImage.src = 'https://www.jmkeim.com/' + value1.replace(/ /g, '-');
         certificateImage.alt = `Your #1 Power Value is ${value1}`;
 
